@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Inspection Report</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .report-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #0ea5e9 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .company-branding {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .company-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .company-tagline {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .report-header {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .report-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .report-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .content-section {
+            padding: 40px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 2px 0 0 2px;
+        }
+
+        .info-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 1px solid #a7f3d0;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .summary-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 3px 0 0 3px;
+        }
+
+        .summary-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #065f46;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .summary-title::before {
+            content: '📊';
+            margin-right: 12px;
+            font-size: 28px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .stat-box {
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 14px;
+        }
+
+        .total-box {
+            background-color: #e6f0ff;
+        }
+
+        .ok-box {
+            background-color: #e6ffe6;
+        }
+
+        .notok-box {
+            background-color: #ffe6e6;
+        }
+
+        .na-box {
+            background-color: #f0f0f0;
+        }
+
+        .system-section {
+            margin: 30px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .system-header {
+            background-color: #4a86e8;
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .tasks-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tasks-table th {
+            background-color: #eef;
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tasks-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tasks-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-ok {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+
+        .status-ok::before {
+            content: '✅';
+            margin-right: 6px;
+        }
+
+        .status-notok {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+
+        .status-notok::before {
+            content: '❌';
+            margin-right: 6px;
+        }
+
+        .status-na {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
+            border: 1px solid #f59e0b;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .status-na::before {
+            content: '⚠️';
+            margin-right: 6px;
+        }
+
+        .task-comment {
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #475569;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 32px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .footer p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .footer .report-id {
+            font-family: 'Courier New', monospace;
+            background: #e2e8f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .report-container { box-shadow: none; border-radius: 0; }
+            .header-section::before { display: none; }
+        }
+
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="header-section">
+            <div class="company-branding">
+                <div class="company-logo">🔧</div>
+                <div class="company-name">Digital Field Inspection</div>
+                <div class="company-tagline">Professional Inspection Solutions</div>
+            </div>
+
+            <div class="report-header">
+                <div class="report-title">INSPECTION REPORT</div>
+                <div class="report-subtitle">{{ assignment.title }}</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Inspection Details</h3>
+                    <p><strong>Title:</strong> {{ assignment.title }}</p>
+                    <p><strong>Date:</strong> {{ assignment.due_date|date:"F d, Y" }}</p>
+                    <p><strong>Status:</strong> {{ execution.status|title }}</p>
+                    <p><strong>Generated:</strong> {{ date_generated }}</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Personnel</h3>
+                    <p><strong>Technician:</strong> {{ technician.first_name }} {{ technician.last_name }}</p>
+                    <p><strong>Email:</strong> {{ technician.email }}</p>
+                    <p><strong>Supervisor:</strong> {{ supervisor.first_name }} {{ supervisor.last_name }}</p>
+                    {% if assignment.sector %}
+                    <p><strong>Sector:</strong> {{ assignment.sector.name }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <div class="summary-title">Inspection Summary</div>
+                <div class="summary-stats">
+                    <div class="stat-card">
+                        <div class="stat-number total">{{ total_tasks }}</div>
+                        <div class="stat-label">Total Tasks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number ok">{{ ok_tasks }}</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number not-ok">{{ not_ok_tasks }}</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number na">{{ na_tasks }}</div>
+                        <div class="stat-label">N/A</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="systems-section">
+                <div class="section-title">Inspection Results</div>
+
+                {% for system_data in systems_with_tasks %}
+                <div class="system-card">
+                    <div class="system-header">
+                        {{ system_data.system.name }}
+                    </div>
+                    <table class="task-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">Task #</th>
+                                <th style="width: 47%;">Description</th>
+                                <th style="width: 15%;">Status</th>
+                                <th style="width: 30%;">Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for task_result in system_data.tasks %}
+                            <tr>
+                                <td><strong>{{ task_result.task.number|default:"—" }}</strong></td>
+                                <td>{{ task_result.task.description }}</td>
+                                <td>
+                                    {% if task_result.result.status == 'ok' %}
+                                    <span class="status-badge status-ok">OK</span>
+                                    {% elif task_result.result.status == 'not_ok' %}
+                                    <span class="status-badge status-notok">Not OK</span>
+                                    {% else %}
+                                    <span class="status-badge status-na">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if task_result.result.comment %}
+                                    <div class="task-comment">{{ task_result.result.comment }}</div>
+                                    {% else %}
+                                    <span style="color: #9ca3af; font-style: italic;">No comments</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if execution.technician_notes %}
+            <div class="task-comment" style="margin-top: 32px;">
+                <strong>Additional Technician Notes:</strong>
+                <p style="margin-top: 8px;">{{ execution.technician_notes }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="footer">
+            <div class="footer-content">
+                <h3>🔧 Digital Field Inspection Platform</h3>
+                <p>This report was automatically generated from our professional inspection system.</p>
+                <p>Report ID: <span class="report-id">{{ execution.id }}</span> | Generated: {{ date_generated }}</p>
+                <p style="margin-top: 16px; font-size: 12px; opacity: 0.7;">
+                    © 2024 Digital Field Inspection. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
