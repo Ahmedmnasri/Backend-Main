@@ -16,7 +16,12 @@ load_dotenv()
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-field-inspection-secret-key-change-in-production")
 DEBUG = os.getenv("DEBUG", "True").lower() == "true"
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "digital-mining-backend-production.up.railway.app",
+    "*"  # Keep for flexibility during development
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -147,6 +152,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://maintenanceai.org",
     "https://frontend-e461fi356-issa-bourasses-projects.vercel.app",
     "https://frontend-mtbez19eq-issa-bourasses-projects.vercel.app",
+    "https://digital-mining-backend-production.up.railway.app",
+    "https://digital-mining-frontend-production.up.railway.app",
 ]
 
 # Internationalization
