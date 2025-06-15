@@ -15,12 +15,13 @@ load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-field-inspection-secret-key-change-in-production")
-DEBUG = os.getenv("DEBUG", "True").lower() == "true"
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "digital-mining-backend-production.up.railway.app",
-    "*"  # Keep for flexibility during development
+    ".railway.app",  # Allow all Railway subdomains
+    ".up.railway.app",  # Allow all Railway production domains
 ]
 
 INSTALLED_APPS = [
@@ -180,7 +181,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "noreply@digitalmining.com"
 
 # Frontend URL
-FRONTEND_URL = "http://localhost:5173"
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 # Supabase Configuration
 SUPABASE_URL = os.getenv("SUPABASE_URL", "https://yoolzpzbumgqqyyyzjpn.supabase.co")

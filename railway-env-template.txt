@@ -1,0 +1,33 @@
+# Railway Environment Variables Template
+# Copy these to your Railway project dashboard under Variables tab
+
+# Django Configuration
+SECRET_KEY=your-super-secret-django-key-here
+DEBUG=False
+
+# Database (Supabase)
+SUPABASE_DB_PASSWORD=52WjOiLAUM7IB0Jh
+
+# Supabase Authentication
+SUPABASE_URL=https://yoolzpzbumgqqyyyzjpn.supabase.co
+SUPABASE_ANON_KEY=your-supabase-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
+SUPABASE_JWT_SECRET=your-supabase-jwt-secret
+
+# Frontend URL (update with your Vercel domain)
+FRONTEND_URL=https://your-frontend-domain.vercel.app
+
+# AI Processing (Optional - only if using AI features)
+HUGGINGFACE_API_KEY=your-huggingface-key
+GROQ_API_KEY=your-groq-key
+TOGETHER_API_KEY=your-together-key
+ENABLE_AI_PROCESSING=false
+ENABLE_FREE_AI_PROCESSING=false
+ENABLE_CLOUD_FREE_AI_PROCESSING=false
+
+# Instructions:
+# 1. Go to your Railway project dashboard
+# 2. Click on "Variables" tab
+# 3. Add each variable above with your actual values
+# 4. Make sure to replace placeholder values with real ones
+# 5. Deploy your application
