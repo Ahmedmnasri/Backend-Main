@@ -148,6 +148,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:5173",
+    "https://frontend-aus.vercel.app",
     "https://www.maintenanceai.org",
     "https://maintenanceai.org",
     "https://frontend-e461fi356-issa-bourasses-projects.vercel.app",
